@@ -95,6 +95,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <!-- shellcode.cpp: /GS- and /Od are inherited project-wide.
+         No extra overrides needed — ordering is enforced by .ldr$b/.ldr$e sections. -->
+    <ClCompile Include="src\shellcode.cpp">
+      <Optimization>Disabled</Optimization>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\driver.h" />
