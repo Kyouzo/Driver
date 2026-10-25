@@ -158,7 +158,15 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\handlers\inject.h" />
+    <ClInclude Include="src\handlers\memory.h" />
+    <ClInclude Include="src\handlers\process.h" />
     <ClInclude Include="src\helpers.h" />
+    <ClInclude Include="src\paging.h" />
+    <ClInclude Include="src\types.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
