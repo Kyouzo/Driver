@@ -95,21 +95,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
-    <!-- shellcode.cpp gets per-file overrides to guarantee PIC output -->
+    <!-- shellcode.cpp: /GS- and /Od are inherited project-wide.
+         No extra overrides needed — ordering is enforced by .ldr$b/.ldr$e sections. -->
     <ClCompile Include="src\shellcode.cpp">
       <Optimization>Disabled</Optimization>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <!-- /EHs-c- : no C++ EH so no non-PIC unwind helpers are emitted -->
-      <ExceptionHandling>false</ExceptionHandling>
-      <!-- /Gy- : disable function-level linking (COMDAT) so loader_main and
-           loader_main_end stay in one merged .ldr section in source order.
-           Without this the linker treats each function as its own COMDAT and
-           can place loader_main_end before loader_main. -->
-      <FunctionLevelLinking>false</FunctionLevelLinking>
-      <!-- /Zi instead of /ZI: Edit-and-Continue (/ZI) requires /Gy and is
-           incompatible with /Gy-; ProgramDatabase (/Zi) has no such constraint -->
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

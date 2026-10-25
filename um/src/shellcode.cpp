@@ -1,18 +1,21 @@
 // shellcode.cpp — PIC x64 loader that runs as a thread in the target process.
-// Compiler requirements (enforced per-file in um.vcxproj):
-//   /GS-   no __security_check_cookie (non-PIC)
-//   /Od    no optimizations (keep code predictable)
-//   /EHs-c- no C++ EH (no non-PIC unwind helpers)
-//   /RTCs- /RTCu- /RTCc-  no RTC helpers (non-PIC)
 //
-// The #pragma code_seg(".ldr") puts both loader_main and loader_main_end
-// into the same named section in source order.  Nothing else lives in ".ldr",
-// so  (uintptr_t)loader_main_end - (uintptr_t)loader_main  == exact shell size.
+// Section ordering guarantee:
+//   loader_main  -> #pragma code_seg(".ldr$b")
+//   loader_main_end -> #pragma code_seg(".ldr$e")
+//
+// The MSVC linker merges .ldr$* sections in alphabetical order of the suffix:
+//   .ldr$b  (begin) always precedes  .ldr$e  (end)
+// This is the same mechanism the CRT uses for .CRT$XCA/.CRT$XCZ and the kernel
+// uses for INIT_SECTION / PAGE_SECTION.  It works regardless of /Gy or /ZI.
+//
+// shell_size = (uintptr_t)loader_main_end - (uintptr_t)loader_main
+//   = bytes of loader_main + any linker alignment padding before .ldr$e
+// Sending a few extra pad bytes to the driver is harmless; they never execute.
 
 #include "shellcode.h"
 #include <Windows.h>
 
-#pragma code_seg(".ldr")
 #pragma runtime_checks("", off)
 #pragma strict_gs_check(off)
 #pragma optimize("", off)
@@ -20,6 +23,9 @@
 using pfn_LoadLibraryA_t   = HMODULE(WINAPI*)(LPCSTR);
 using pfn_GetProcAddress_t = FARPROC(WINAPI*)(HMODULE, LPCSTR);
 using pfn_DllMain_t        = BOOL(WINAPI*)(HINSTANCE, DWORD, PVOID);
+
+// ---- loader lives in .ldr$b ------------------------------------------------
+#pragma code_seg(".ldr$b")
 
 void __stdcall loader_main(PMANUAL_MAP_DATA pData)
 {
@@ -105,9 +111,12 @@ void __stdcall loader_main(PMANUAL_MAP_DATA pData)
     pData->pDllMain = 1;
 }
 
-// Sentinel — must be the very next symbol after loader_main in .ldr
+// ---- sentinel lives in .ldr$e — always after .ldr$b -----------------------
+#pragma code_seg(".ldr$e")
+
 void loader_main_end() {}
 
+// reset code segment
+#pragma code_seg()
 #pragma optimize("", on)
 #pragma runtime_checks("", on)
-#pragma code_seg()
