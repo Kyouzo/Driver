@@ -95,6 +95,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <!-- shellcode.cpp gets per-file overrides to guarantee PIC output -->
+    <ClCompile Include="src\shellcode.cpp">
+      <Optimization>Disabled</Optimization>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <!-- /EHs-c- : no C++ EH so no non-PIC unwind helpers are emitted -->
+      <ExceptionHandling>false</ExceptionHandling>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\driver.h" />
