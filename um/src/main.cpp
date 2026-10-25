@@ -14,8 +14,8 @@ int main()
     printf("driver opened\n\n");
 
     // window class name for the target, DLL to inject
-    face_injecor_v2("Respawn001", L"test.dll");
-
+    face_injecor_v2("UnrealWindow", L"Z:/FMM/Farlight/Dumper-7/x64/Release/Dumper-7.dll");
+   
     printf("\n");
     system("pause");
     return 0;
