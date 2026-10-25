@@ -1,12 +1,13 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "z:\\fmm\\farlight\\kkd_[unknowncheats.me]_\\slimegetem driver\\km\\src\\main.cpp",
+        "Source": "z:\\fmm\\bs\\mainloader\\driver\\km\\src\\main.cpp",
         "ProvidedModule": "",
         "Includes": [
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.28000.0\\shared\\warning.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.28000.0\\shared\\suppress.h",
-            "z:\\fmm\\farlight\\kkd_[unknowncheats.me]_\\slimegetem driver\\km\\src\\helpers.h",
+            "z:\\fmm\\bs\\mainloader\\driver\\km\\src\\helpers.h",
+            "z:\\fmm\\bs\\mainloader\\driver\\km\\src\\types.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.28000.0\\km\\ntifs.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.28000.0\\km\\ntddk.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.28000.0\\km\\wdm.h",
@@ -100,7 +101,11 @@
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.28000.0\\km\\crt\\limits.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.28000.0\\km\\crt\\crtdefs.h",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.28000.0\\km\\crt\\zmmintrin.h",
-            "c:\\program files (x86)\\windows kits\\10\\include\\10.0.28000.0\\km\\crt\\ammintrin.h"
+            "c:\\program files (x86)\\windows kits\\10\\include\\10.0.28000.0\\km\\crt\\ammintrin.h",
+            "z:\\fmm\\bs\\mainloader\\driver\\km\\src\\paging.h",
+            "z:\\fmm\\bs\\mainloader\\driver\\km\\src\\handlers\\process.h",
+            "z:\\fmm\\bs\\mainloader\\driver\\km\\src\\handlers\\memory.h",
+            "z:\\fmm\\bs\\mainloader\\driver\\km\\src\\handlers\\inject.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []
