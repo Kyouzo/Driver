@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "Z:\\FMM\\Farlight\\KKD_[unknowncheats.me]_\\slimegetem driver\\build\\vm_intermediates\\main.obj",
+            "outputs": [
+                "Z:\\FMM\\Farlight\\KKD_[unknowncheats.me]_\\slimegetem driver\\build\\vm_intermediates\\main.cpp.obj.dt.module.json",
+                "Z:\\FMM\\Farlight\\KKD_[unknowncheats.me]_\\slimegetem driver\\build\\vm_intermediates\\main.cpp.obj.dt.d.json"
+            ],
+            "requires": []
+        }
+    ]
+}
