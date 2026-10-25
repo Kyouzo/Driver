@@ -107,6 +107,9 @@
            Without this the linker treats each function as its own COMDAT and
            can place loader_main_end before loader_main. -->
       <FunctionLevelLinking>false</FunctionLevelLinking>
+      <!-- /Zi instead of /ZI: Edit-and-Continue (/ZI) requires /Gy and is
+           incompatible with /Gy-; ProgramDatabase (/Zi) has no such constraint -->
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
