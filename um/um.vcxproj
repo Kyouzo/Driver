@@ -102,6 +102,11 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <!-- /EHs-c- : no C++ EH so no non-PIC unwind helpers are emitted -->
       <ExceptionHandling>false</ExceptionHandling>
+      <!-- /Gy- : disable function-level linking (COMDAT) so loader_main and
+           loader_main_end stay in one merged .ldr section in source order.
+           Without this the linker treats each function as its own COMDAT and
+           can place loader_main_end before loader_main. -->
+      <FunctionLevelLinking>false</FunctionLevelLinking>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
